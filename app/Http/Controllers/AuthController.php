@@ -22,6 +22,11 @@ class AuthController extends Controller
         }
         if (Auth::attempt($credentials)) {$user = Auth::user();
         return redirect()->back()->withErrors(['password' => 'Invalid password'])->withInput();}
+        return back()->withErrors(['Invalid credentials']);
+
+        if (Auth::attempt($credentials)) {
+            return redirect()->view('dashboard');
+        }
     }
 
 
